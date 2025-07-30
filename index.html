@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS Interview Prep Quiz</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <!-- Matrix Background -->
+        <div class="matrix-background">
+            <div class="matrix-rain"></div>
+            <div class="floating-symbols">
+                <div class="symbol symbol-1">{</div>
+                <div class="symbol symbol-2">}</div>
+                <div class="symbol symbol-3">&lt;</div>
+                <div class="symbol symbol-4">&gt;</div>
+                <div class="symbol symbol-5">[]</div>
+                <div class="symbol symbol-6">//</div>
+            </div>
+            <div class="circuit-lines">
+                <div class="line line-1"></div>
+                <div class="line line-2"></div>
+                <div class="line line-3"></div>
+            </div>
+            <div class="glowing-orbs">
+                <div class="orb orb-1"></div>
+                <div class="orb orb-2"></div>
+                <div class="orb orb-3"></div>
+            </div>
+        </div>
+
+        <!-- Subject Selection Screen -->
+        <div id="subject-selection" class="screen active">
+            <div class="container">
+                <div class="card main-card">
+                    <div class="card-header text-center">
+                        <div class="icon-container">
+                            <div class="terminal-icon">⚡</div>
+                        </div>
+                        <h1 class="main-title">CS_INTERVIEW_PREP.exe</h1>
+                        <p class="subtitle">Initialize knowledge assessment protocol... 🚀</p>
+                    </div>
+                    <div class="card-content">
+                        <div class="subjects-grid">
+                            <button class="subject-card" data-subject="dsa">
+                                <div class="subject-header">
+                                    <div class="subject-icon dsa-color">💻</div>
+                                    <div class="subject-emoji">🔢</div>
+                                </div>
+                                <div class="subject-info">
+                                    <h3>Data Structures & Algorithms</h3>
+                                    <p>Execute knowledge test</p>
+                                </div>
+                            </button>
+                            <button class="subject-card" data-subject="os">
+                                <div class="subject-header">
+                                    <div class="subject-icon os-color">🖥️</div>
+                                    <div class="subject-emoji">💻</div>
+                                </div>
+                                <div class="subject-info">
+                                    <h3>Operating Systems</h3>
+                                    <p>Execute knowledge test</p>
+                                </div>
+                            </button>
+                            <button class="subject-card" data-subject="dbms">
+                                <div class="subject-header">
+                                    <div class="subject-icon dbms-color">🗃️</div>
+                                    <div class="subject-emoji">🗄️</div>
+                                </div>
+                                <div class="subject-info">
+                                    <h3>Database Management</h3>
+                                    <p>Execute knowledge test</p>
+                                </div>
+                            </button>
+                            <button class="subject-card" data-subject="networks">
+                                <div class="subject-header">
+                                    <div class="subject-icon networks-color">🌐</div>
+                                    <div class="subject-emoji">🌐</div>
+                                </div>
+                                <div class="subject-info">
+                                    <h3>Computer Networks</h3>
+                                    <p>Execute knowledge test</p>
+                                </div>
+                            </button>
+                            <button class="subject-card" data-subject="oop">
+                                <div class="subject-header">
+                                    <div class="subject-icon oop-color">📦</div>
+                                    <div class="subject-emoji">🎯</div>
+                                </div>
+                                <div class="subject-info">
+                                    <h3>Object-Oriented Programming</h3>
+                                    <p>Execute knowledge test</p>
+                                </div>
+                            </button>
+                            <button class="subject-card" data-subject="mixed">
+                                <div class="subject-header">
+                                    <div class="subject-icon mixed-color">🎲</div>
+                                    <div class="subject-emoji">🎲</div>
+                                </div>
+                                <div class="subject-info">
+                                    <h3>Mixed Questions</h3>
+                                    <p>Random questions from all modules</p>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Start Screen -->
+        <div id="quiz-start" class="screen">
+            <div class="container">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <div class="icon-container">
+                            <div id="start-subject-icon" class="subject-icon"></div>
+                        </div>
+                        <h1 id="start-subject-title" class="subject-title"></h1>
+                        <p class="subtitle">Initializing assessment module... Ready to execute? 🚀</p>
+                        <div class="quiz-info">
+                            <p class="info-text">
+                                <span class="info-label">Questions:</span> <span id="question-count">5</span><br>
+                                <span class="info-label">Types:</span> Multiple formats<br>
+                                <span class="info-label">Mode:</span> Interactive assessment<br>
+                                <span class="info-label">Timer:</span> <span id="timer-setting">60s per question</span>
+                            </p>
+                        </div>
+                        <div class="timer-options">
+                            <h3 class="timer-title">⏱️ Timer Settings</h3>
+                            <div class="timer-buttons">
+                                <button class="timer-btn active" data-time="60">60s</button>
+                                <button class="timer-btn" data-time="90">90s</button>
+                                <button class="timer-btn" data-time="120">2min</button>
+                                <button class="timer-btn" data-time="0">No Timer</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <button id="start-quiz-btn" class="btn btn-primary btn-large">EXECUTE_QUIZ() 🚀</button>
+                        <button id="back-to-subjects-btn" class="btn btn-outline">RETURN_TO_MENU()</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quiz-screen" class="screen">
+            <div class="container">
+                <div class="card quiz-card">
+                    <div class="card-header">
+                        <div class="quiz-header">
+                            <div class="quiz-info-row">
+                                <div class="badge" id="question-badge">QUESTION 1/5</div>
+                                <div class="progress-text" id="progress-text">20% PROGRESS</div>
+                            </div>
+                            <div class="timer-display" id="timer-display" style="display: none;">
+                                <div class="timer-circle">
+                                    <div class="timer-text">
+                                        <span id="timer-seconds">60</span>
+                                        <span class="timer-label">SEC</span>
+                                    </div>
+                                    <svg class="timer-svg" viewBox="0 0 100 100">
+                                        <circle cx="50" cy="50" r="45" class="timer-bg"></circle>
+                                        <circle cx="50" cy="50" r="45" class="timer-progress" id="timer-progress"></circle>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progress-fill"></div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="question-section">
+                            <div class="question-type-badge" id="question-type">MULTIPLE_CHOICE</div>
+                            <h2 class="question-title" id="question-title">What is the time complexity of binary search?</h2>
+                            <div class="code-block" id="code-block" style="display: none;">
+                                <pre id="code-content"></pre>
+                            </div>
+                        </div>
+                        <div class="answers-section" id="answers-section">
+                            <!-- Dynamic content will be inserted here -->
+                        </div>
+                        <button id="next-question-btn" class="btn btn-primary btn-large" disabled>NEXT_QUESTION()</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="results-screen" class="screen">
+            <div class="container">
+                <div class="card results-card">
+                    <div class="card-header text-center">
+                        <div class="score-emoji" id="score-emoji">🔥</div>
+                        <h1 class="main-title">ASSESSMENT_COMPLETE</h1>
+                        <div class="score-section">
+                            <div class="score-display" id="score-display">5/5</div>
+                            <div class="accuracy-badge" id="accuracy-badge">100% ACCURACY</div>
+                            <p class="score-message" id="score-message">Excellent! You're ready for interviews! 🚀</p>
+                            <div class="time-stats" id="time-stats" style="display: none;">
+                                <div class="stat-item">
+                                    <span class="stat-label">Total Time:</span>
+                                    <span class="stat-value" id="total-time">0:00</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Avg per Question:</span>
+                                    <span class="stat-value" id="avg-time">0:00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="score-breakdown">
+                            <div class="score-item correct">
+                                <div class="score-icon">✅</div>
+                                <div class="score-number" id="correct-count">5</div>
+                                <div class="score-label">CORRECT</div>
+                            </div>
+                            <div class="score-item incorrect">
+                                <div class="score-icon">❌</div>
+                                <div class="score-number" id="incorrect-count">0</div>
+                                <div class="score-label">INCORRECT</div>
+                            </div>
+                        </div>
+                        <div class="review-summary">
+                            <h3 class="summary-title">👁️ QUICK_REVIEW_SUMMARY</h3>
+                            <div class="summary-list" id="summary-list">
+                                <!-- Dynamic content will be inserted here -->
+                            </div>
+                        </div>
+                        <div class="action-buttons">
+                            <button id="review-answers-btn" class="btn btn-secondary btn-large">👁️ REVIEW_ANSWERS()</button>
+                            <div class="button-row">
+                                <button id="restart-quiz-btn" class="btn btn-primary">🔄 RESTART()</button>
+                                <button id="new-module-btn" class="btn btn-outline">NEW_MODULE()</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Review Screen -->
+        <div id="review-screen" class="screen">
+            <div class="container">
+                <div class="card review-card">
+                    <div class="card-header">
+                        <div class="review-header">
+                            <div class="badge" id="review-badge">REVIEW 1/5</div>
+                            <div class="correctness-badge" id="correctness-badge">CORRECT ✅</div>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="review-progress-fill"></div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="review-question">
+                            <div class="question-type-badge" id="review-question-type">MULTIPLE_CHOICE</div>
+                            <h2 class="question-title" id="review-question-title">What is the time complexity of binary search?</h2>
+                            <div class="code-block" id="review-code-block" style="display: none;">
+                                <pre id="review-code-content"></pre>
+                            </div>
+                        </div>
+                        <div class="answer-comparison">
+                            <div class="answer-box user-answer" id="user-answer-box">
+                                <div class="answer-header">
+                                    <span class="answer-icon">❌</span>
+                                    <h3>YOUR ANSWER</h3>
+                                </div>
+                                <p id="user-answer-text">O(n)</p>
+                            </div>
+                            <div class="answer-box correct-answer">
+                                <div class="answer-header">
+                                    <span class="answer-icon">✅</span>
+                                    <h3>CORRECT ANSWER</h3>
+                                </div>
+                                <p id="correct-answer-text">O(log n)</p>
+                            </div>
+                        </div>
+                        <div class="explanation-box">
+                            <h3 class="explanation-title">👁️ EXPLANATION</h3>
+                            <p id="explanation-text">Binary search divides the search space in half each time, resulting in O(log n) complexity.</p>
+                        </div>
+                        <div class="review-navigation">
+                            <button id="prev-review-btn" class="btn btn-outline">⬅️ PREVIOUS</button>
+                            <div class="review-counter" id="review-counter">1 / 5</div>
+                            <button id="next-review-btn" class="btn btn-outline">NEXT ➡️</button>
+                            <button id="back-to-results-btn" class="btn btn-primary" style="display: none;">BACK TO RESULTS</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
